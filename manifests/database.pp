@@ -2,7 +2,7 @@
 
 class netbox::database {
 
-  include ::postgresql
+  include ::postgresql::server
 
   class { 'postgresql::globals':
     manage_package_repo => true,
