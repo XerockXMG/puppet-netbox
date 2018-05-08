@@ -43,9 +43,9 @@ class netbox::service {
   }
 
   postgresql_conn_validator { 'netbox':
-    db_name     => $netbox::db_database,
     host        => $netbox::db_hostname,
     db_username => $netbox::db_username,
     db_password => $netbox::db_password,
+    db_name     => $netbox::db_database,
   }
 }
