@@ -2,6 +2,7 @@
 
 class netbox::service {
   include ::nginx
+  include ::postgresql::params
 
   python::gunicorn { 'netbox':
     ensure      => present,
