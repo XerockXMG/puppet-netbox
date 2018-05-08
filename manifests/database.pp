@@ -7,9 +7,7 @@ class netbox::database {
     version             => $netbox::postgresql_version,
   }
 
-  class { 'postgresql::server':
-    psql_path => $netbox::psql_path
-  }
+  class { 'postgresql::server':  }
   class { 'postgresql::lib::devel': }
   class { 'postgresql::lib::python': }
 
@@ -30,5 +28,6 @@ class netbox::database {
     db_password => $netbox::db_password,
     db_name     => $netbox::db_database,
     port        => $netbox::db_port,
+    psql_path   => $netbox::psql_path
   }
 }
