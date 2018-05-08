@@ -13,7 +13,7 @@ class netbox::install {
       version    => $netbox::python_version,
       pip        => 'present',
       dev        => 'present',
-      virtualenv => 'absent',
+      virtualenv => 'present',
       gunicorn   => 'present',
     }
   }
