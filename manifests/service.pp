@@ -47,5 +47,6 @@ class netbox::service {
     db_username => $netbox::db_username,
     db_password => $netbox::db_password,
     db_name     => $netbox::db_database,
+    port        => $netbox::db_port,
   }
 }

@@ -10,6 +10,7 @@ class netbox (
   $db_database     = 'netbox',
   $db_username     = 'netbox',
   $db_password     = 'netbox',
+  $db_port         = '5432',
 ) {
   contain 'netbox::install'
   contain 'netbox::config'
