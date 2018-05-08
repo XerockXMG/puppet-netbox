@@ -28,6 +28,5 @@ class netbox::database {
     db_password => $netbox::db_password,
     db_name     => $netbox::db_database,
     port        => $netbox::db_port,
-    require     => Service["postgresql-${netbox::postgresql_version}"]
   }
 }
