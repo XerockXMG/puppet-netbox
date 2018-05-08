@@ -37,7 +37,7 @@ class netbox::install {
   vcsrepo { '/opt/netbox/netbox':
     ensure   => present,
     provider => git,
-    source   => 'git@github.com:digitalocean/netbox.git',
+    source   => 'https://github.com/digitalocean/netbox.git',
     revision => $netbox::version,
     require  => File['netbox dir'],
   }
