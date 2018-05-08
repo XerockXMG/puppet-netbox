@@ -6,7 +6,7 @@ class netbox (
   Boolean $manage_python = true,
   $directory       = '/opt/netbox',
   $manage_database = true,
-  $db_hostname     = 'localhost',
+  $db_hostname     = '127.0.0.1',
   $db_database     = 'netbox',
   $db_username     = 'netbox',
   $db_password     = 'netbox',
