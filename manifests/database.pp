@@ -7,7 +7,7 @@ class netbox::database {
 #  }
   class { 'postgresql::globals':
     manage_package_repo => true,
-    version             => '10'
+    version             => '9.4'
   }
 
   class { 'postgresql::server': }
