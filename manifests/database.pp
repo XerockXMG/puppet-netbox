@@ -5,10 +5,11 @@ class netbox::database {
   class { 'postgresql::globals':
     manage_package_repo => true,
     version             => $netbox::postgresql_version,
-    psql_path           => $netbox::psql_path
   }
 
-  class { 'postgresql::server': }
+  class { 'postgresql::server':
+    psql_path => $netbox::psql_path
+  }
   class { 'postgresql::lib::devel': }
   class { 'postgresql::lib::python': }
 
