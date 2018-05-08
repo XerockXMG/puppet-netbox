@@ -4,7 +4,8 @@ class netbox::database {
 
   class { 'postgresql::globals':
     manage_package_repo => true,
-    version             => $netbox::postgresql_version
+    version             => $netbox::postgresql_version,
+    psql_path           => $netbox::psql_path
   }
 
   class { 'postgresql::server': }
