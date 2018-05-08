@@ -2,7 +2,6 @@
 
 class netbox::service {
   include ::nginx
-  include ::postgresql::params
 
   python::gunicorn { 'netbox':
     ensure      => present,
@@ -43,12 +42,11 @@ class netbox::service {
     location => '/static'
   }
 
-  postgresql_conn_validator { 'netbox':
-    host        => $netbox::db_hostname,
-    db_username => $netbox::db_username,
-    db_password => $netbox::db_password,
-    db_name     => $netbox::db_database,
-    port        => $netbox::db_port,
-    psql_path   => $postgresql::params::psql_path
-  }
+#  postgresql_conn_validator { 'netbox':
+#    host        => $netbox::db_hostname,
+#    db_username => $netbox::db_username,
+#    db_password => $netbox::db_password,
+#    db_name     => $netbox::db_database,
+#    port        => $netbox::db_port,
+#  }
 }
