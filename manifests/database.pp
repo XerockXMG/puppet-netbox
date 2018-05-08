@@ -7,9 +7,9 @@ class netbox::database {
     version             => $netbox::postgresql_version
   }
 
-  class { 'postgresql::server': }
-  class { 'postgresql::lib::devel': }
-  class { 'postgresql::lib::python': }
+#  class { 'postgresql::server': }
+#  class { 'postgresql::lib::devel': }
+#  class { 'postgresql::lib::python': }
 
   postgresql::server::db { $netbox::db_database:
     password => postgresql_password($netbox::db_username, $netbox::db_password),
