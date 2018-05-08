@@ -48,5 +48,6 @@ class netbox::service {
     db_password => $netbox::db_password,
     db_name     => $netbox::db_database,
     port        => $netbox::db_port,
+    psql_path   => $postgresql::params::psql_path
   }
 }
