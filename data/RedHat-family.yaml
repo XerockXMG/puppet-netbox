@@ -1,0 +1,2 @@
+netbox::python_version: '36'
+python::packages: [libxml2-devel libxslt-devel libffi-devel graphviz openssl-devel redhat-rpm-config]
