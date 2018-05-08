@@ -1,2 +1,3 @@
-netbox::python_version: 3
-netbox::python_packages: [build-essential libxml2-dev libxslt1-dev libffi-dev graphviz libpq-dev libssl-dev zlib1g-dev]
+---
+netbox::python_version: '3'
+netbox::python::packages: ['build-essential', 'libxml2-dev', 'libxslt1-dev', 'libffi-dev', 'graphviz', 'libpq-dev', 'libssl-dev', 'zlib1g-dev']

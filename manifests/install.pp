@@ -4,7 +4,7 @@ class netbox::install {
 
   if $netbox::manage_python == true {
 
-    package { lookup('python::packages'):
+    package { lookup('netbox::python::packages'):
       ensure => 'installed',
     }
 
