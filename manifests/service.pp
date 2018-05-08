@@ -3,7 +3,7 @@
 class netbox::service {
   include ::nginx
 
-  python::gunicorn { $netbox::vhost:
+  python::gunicorn { 'netbox':
     ensure      => present,
     bind        => "unix:${netbox::directory}/gunicorn.socket",
     dir         => "${netbox::directory}/netbox",
