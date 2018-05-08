@@ -1,7 +1,6 @@
 # = Class: netbox
 
 class netbox (
-  $vhost,
   String $python_version,
   Pattern[/v\d\.\d(\.\d-r\d|\.\d|-beta\d)/] $version,
   Boolean $manage_python = true,
