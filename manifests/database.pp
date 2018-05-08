@@ -22,8 +22,9 @@ class netbox::database {
     role      => $netbox::db_username,
   }
 
-  service { "postgresql-${netbox::postgresql_version}":
+  service { 'netbox postgres':
     ensure => running,
+    name   => "postgresql-${netbox::postgresql_version}",
   }
 
   postgresql_conn_validator { 'netbox':
