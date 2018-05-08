@@ -1,13 +1,10 @@
 # = Class: netbox::database
 
 class netbox::database {
-#  class { 'postgresql::globals':
-#    manage_package_repo => true,
-#    version             => '9.4'
-#  }
+
   class { 'postgresql::globals':
     manage_package_repo => true,
-    version             => '9.4'
+    version             => $netbox::postgresql_version
   }
 
   class { 'postgresql::server': }
@@ -25,4 +22,16 @@ class netbox::database {
     role      => $netbox::db_username,
   }
 
+  service { "postgresql-${netbox::postgresql_version}":
+    ensure => running,
+  }
+
+  postgresql_conn_validator { 'netbox':
+    host        => $netbox::db_hostname,
+    db_username => $netbox::db_username,
+    db_password => $netbox::db_password,
+    db_name     => $netbox::db_database,
+    port        => $netbox::db_port,
+    require     => Service["postgresql-${netbox::postgresql_version}"]
+  }
 }

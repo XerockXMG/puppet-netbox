@@ -26,14 +26,6 @@ class netbox::install {
     mode   => '0755',
   }
 
-#  archive { "netbox-${::netbox::version}.tar.gz":
-#    source          => "https://github.com/digitalocean/netbox/archive/v${::netbox::version}.tar.gz",
-#    path            => "/tmp/netbox-${::netbox::version}.tar.gz",
-#    extract_command => 'tar xzf %s --strip-components=1',
-#    extract_path    => $::netbox::directory,
-#    extract         => true,
-#  }
-
   vcsrepo { '/opt/netbox/netbox':
     ensure   => present,
     provider => git,
