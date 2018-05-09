@@ -56,6 +56,5 @@ class netbox::install {
     provider => git,
     source   => 'https://github.com/digitalocean/netbox.git',
     revision => $netbox::version,
-    require  => File['netbox dir'],
   }
 }
