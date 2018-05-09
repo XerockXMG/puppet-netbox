@@ -30,7 +30,7 @@ class netbox::install {
   }
 
   if $netbox::install_pip == true {
-    package { "${netbox::python::version}-pip":
+    package { "${netbox::python_version}-pip":
       ensure => 'installed',
     }
   }
