@@ -16,6 +16,7 @@ class netbox::install {
         dev        => 'present',
         virtualenv => 'present',
         gunicorn   => 'present',
+        provider   => 'rhscl'
       }
 
       if $netbox::install_pip == true {
