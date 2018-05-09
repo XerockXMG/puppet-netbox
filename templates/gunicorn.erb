@@ -1,5 +1,5 @@
 command = '/bin/gunicorn'
-pythonpath = '<%= @netbox::directory -%>/netbox'
+pythonpath = '<%= scope['netbox::directory'] -%>/netbox'
 bind = '127.0.0.1:8000'
 workers = 3
 user = 'nginx'
