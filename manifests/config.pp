@@ -7,5 +7,6 @@ class netbox::config {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
+    require => File['netbox dir']
   }
 }
