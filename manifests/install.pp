@@ -28,9 +28,6 @@ class netbox::install {
       }
     }
 
-    python::pip { 'Pip34': }
-  }
-
   file { 'netbox dir':
     ensure => 'directory',
     path   => $netbox::directory,
