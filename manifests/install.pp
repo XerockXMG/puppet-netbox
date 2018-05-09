@@ -27,6 +27,7 @@ class netbox::install {
         gunicorn   => 'absent',
       }
     }
+  }
 
   file { 'netbox dir':
     ensure => 'directory',
