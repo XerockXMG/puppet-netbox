@@ -8,11 +8,14 @@ class netbox::service {
     python::gunicorn { 'netbox':
       ensure      => present,
       bind        => "unix:${netbox::directory}/gunicorn.socket",
+      config_dir  => "${netbox::directory}/netbox",
       dir         => "${netbox::directory}/netbox",
       appmodule   => 'netbox.wsgi:application',
       environment => 'production',
       mode        => 'wsgi',
       timeout     => 30,
+      owner       => 'nginx',
+      group       => 'nginx',
     }
   }
 
