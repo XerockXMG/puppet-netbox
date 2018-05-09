@@ -9,12 +9,23 @@ class netbox::install {
       ensure => 'installed',
     }
 
-    class { 'python':
-      version    => $netbox::python_version,
-      pip        => 'present',
-      dev        => 'present',
-      virtualenv => 'present',
-      gunicorn   => 'present',
+    if $netbox::use_gunicorn == true {
+      class { 'python':
+        version    => $netbox::python_version,
+        pip        => 'present',
+        dev        => 'present',
+        virtualenv => 'present',
+        gunicorn   => 'present',
+      }
+    }
+    else {
+      class { 'python':
+        version    => $netbox::python_version,
+        pip        => 'present',
+        dev        => 'present',
+        virtualenv => 'present',
+        gunicorn   => 'absent',
+      }
     }
   }
 

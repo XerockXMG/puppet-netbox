@@ -5,6 +5,7 @@ class netbox (
   Pattern[/v\d\.\d(\.\d-r\d|\.\d|-beta\d)/] $version,
   Pattern[/9\.\d|10/] $postgresql_version,
   Boolean $manage_python = true,
+  Boolean $use_gunicorn = true,
   $directory       = '/opt/netbox',
   $manage_database = true,
   String $psql_path = '/usr/bin/psql',
