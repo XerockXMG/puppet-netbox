@@ -12,7 +12,7 @@ class netbox::install {
     if $netbox::use_gunicorn == true {
       class { 'python':
         version    => $netbox::python_version,
-        pip        => 'present',
+        pip        => 'latest',
         dev        => 'present',
         virtualenv => 'present',
         gunicorn   => 'present',
@@ -27,6 +27,8 @@ class netbox::install {
         gunicorn   => 'absent',
       }
     }
+
+    python::pip { 'Pip34': }
   }
 
   file { 'netbox dir':
