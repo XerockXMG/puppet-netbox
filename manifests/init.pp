@@ -4,6 +4,7 @@ class netbox (
   String $python_version,
   Pattern[/v\d\.\d(\.\d-r\d|\.\d|-beta\d)/] $version,
   Pattern[/9\.\d|10/] $postgresql_version,
+  Optional[Boolean] $install_pip,
   Boolean $manage_python = true,
   Boolean $use_gunicorn = true,
   $directory       = '/opt/netbox',

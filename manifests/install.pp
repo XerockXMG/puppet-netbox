@@ -29,6 +29,12 @@ class netbox::install {
     }
   }
 
+  if $netbox::install_pip == true {
+    package { "${netbox::python::version}-pip":
+      ensure => 'installed',
+    }
+  }
+
   file { 'netbox dir':
     ensure => 'directory',
     path   => $netbox::directory,
