@@ -1,7 +1,0 @@
-<%- | String $netbox_dir = $netbox::directory | -%>
-
-command = '/bin/gunicorn'
-pythonpath = '<%= $netbox_dir -%>/netbox'
-bind = '127.0.0.1:8000'
-workers = 3
-user = 'nginx'
