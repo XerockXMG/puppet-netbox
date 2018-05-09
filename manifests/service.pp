@@ -17,7 +17,7 @@ class netbox::service {
       timeout     => 30,
       owner       => 'nginx',
       group       => 'nginx',
-      template    => 'netbox/gunicorn.epp',
+      template    => 'netbox/gunicorn.erb',
     }
   }
 
