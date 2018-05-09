@@ -12,10 +12,17 @@ class netbox::install {
     if $netbox::use_gunicorn == true {
       class { 'python':
         version    => $netbox::python_version,
-        pip        => 'latest',
+        pip        => 'present',
         dev        => 'present',
         virtualenv => 'present',
         gunicorn   => 'present',
+      }
+
+      if $netbox::install_pip == true {
+        package { 'gunicorn':
+          ensure   => 'installed',
+          provider => pip3,
+        }
       }
     }
     else {
