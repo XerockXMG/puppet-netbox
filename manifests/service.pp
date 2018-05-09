@@ -5,10 +5,11 @@ class netbox::service {
 
   if $netbox::use_gunicorn == true {
 
-    python::gunicorn { 'netbox':
+    python::gunicorn { 'netbox gunicorn':
       ensure      => present,
+      name        => 'gunicorn_config.py',
       bind        => "unix:${netbox::directory}/gunicorn.socket",
-      config_dir  => "${netbox::directory}/netbox",
+      config_dir  => "${netbox::directory}",
       dir         => "${netbox::directory}/netbox",
       appmodule   => 'netbox.wsgi:application',
       environment => 'production',
