@@ -51,10 +51,11 @@ class netbox::install {
     mode   => '0755',
   }
 
-  vcsrepo { '/opt/netbox/netbox':
+  vcsrepo { "${netbox::directory}/netbox":
     ensure   => present,
     provider => git,
     source   => 'https://github.com/digitalocean/netbox.git',
     revision => $netbox::version,
+    require  => File['netbox dir'],
   }
 }
