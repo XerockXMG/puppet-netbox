@@ -19,9 +19,10 @@ class netbox::install {
       }
 
       if $netbox::install_pip == true {
-        package { 'gunicorn':
+        package { 'python3 gunicorn':
           ensure   => 'installed',
           provider => pip3,
+          name     => 'gunicorn'
         }
       }
     }
