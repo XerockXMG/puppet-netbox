@@ -4,7 +4,7 @@ class netbox::install {
 
   if $netbox::manage_python == true {
 
-    $version = lookup("netbox::python['${netbox::python_version}']")
+    $version = lookup("netbox::python.${netbox::python_version}")
     package { ['$version']  :
       ensure => 'installed',
     }
@@ -15,14 +15,14 @@ class netbox::install {
 
     if $netbox::use_gunicorn == true {
 
-      if $version > '2.7' {
+      if ($netbox::python_version > '27') or ($netbox::python_version == '3') {
         package { 'python3 gunicorn':
           ensure   => 'installed',
           provider => pip3,
           name     => 'gunicorn'
         }
       }
-      if $netbox::pip_version == '2.7' {
+      if $netbox::pip_version == '27' {
         package { 'python2 gunicorn':
           ensure   => 'installed',
           provider => pip,

@@ -1,7 +1,7 @@
 # = Class: netbox
 
 class netbox (
-  Enum['2.7', '3', '3.4'] $python_version,
+  Enum['27', '3', '34'] $python_version,
   String $allowed_hosts,
   String $secret_key,
   Pattern[/v\d\.\d(\.\d-r\d|\.\d|-beta\d)/] $version,
