@@ -19,6 +19,12 @@ class netbox::service {
       group       => 'nginx',
       template    => 'netbox/gunicorn.erb',
     }
+
+    supervisord::program { 'supervisor-netbox':
+    command   => 'gunicorn -c /opt/netbox/gunicorn_config.py netbox.wsgi',
+    directory => '/opt/netbox/netbox/',
+    user      => 'nginx'
+    }
   }
 
   nginx::resource::server { 'netbox server':
