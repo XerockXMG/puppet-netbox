@@ -6,7 +6,7 @@ class netbox::install {
 
     $packages = lookup("netbox::python.${netbox::python_version}.packages")
     $pip = lookup("netbox::python.${netbox::python_version}.pip")
-    package { ["$version"]  :
+    package { ["$packages"]  :
       ensure => 'installed',
     }
 
