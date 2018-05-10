@@ -2,6 +2,8 @@
 
 class netbox (
   String $python_version,
+  Array $allowed_hosts,
+  String $secret_key,
   Pattern[/v\d\.\d(\.\d-r\d|\.\d|-beta\d)/] $version,
   Pattern[/9\.\d|10/] $postgresql_version,
   Optional[Boolean] $install_pip = undef,
