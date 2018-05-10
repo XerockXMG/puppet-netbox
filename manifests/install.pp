@@ -4,24 +4,29 @@ class netbox::install {
 
   if $netbox::manage_python == true {
 
-    $packages = lookup('netbox::python_packages')
-    package { $packages:
+    $version = lookup('netbox::python["$netbox::python_version"]')
+    package { 'install python':
+      ensure => 'installed',
+      name   => '$version'
+    }
+
+    package { "${netbox::python_version}-pip":
       ensure => 'installed',
     }
 
     if $netbox::use_gunicorn == true {
-      class { 'python':
-        version    => $netbox::python_version,
-        pip        => 'present',
-        dev        => 'present',
-        virtualenv => 'present',
-        gunicorn   => 'absent',
-      }
 
-      if $netbox::install_pip == true {
+      if $netbox::pip_version == '3' {
         package { 'python3 gunicorn':
           ensure   => 'installed',
           provider => pip3,
+          name     => 'gunicorn'
+        }
+      }
+      if $netbox::pip_version == '2' {
+        package { 'python2 gunicorn':
+          ensure   => 'installed',
+          provider => pip,
           name     => 'gunicorn'
         }
       }
@@ -37,10 +42,9 @@ class netbox::install {
     }
   }
 
-  if $netbox::install_pip == true {
-    package { "${netbox::python_version}-pip":
-      ensure => 'installed',
-    }
+  $packages = lookup('netbox::packages')
+  package { $packages:
+    ensure => 'installed',
   }
 
   file { 'netbox dir':

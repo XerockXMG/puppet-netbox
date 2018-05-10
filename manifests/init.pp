@@ -1,14 +1,14 @@
 # = Class: netbox
 
 class netbox (
-  String $python_version,
+  Enum['2.7', '3', '3.4'] $python_version,
   String $allowed_hosts,
   String $secret_key,
   Pattern[/v\d\.\d(\.\d-r\d|\.\d|-beta\d)/] $version,
   Pattern[/9\.\d|10/] $postgresql_version,
-  Optional[Boolean] $install_pip = undef,
   Boolean $manage_python = true,
   Boolean $use_gunicorn = true,
+  String $pip_version = '3',
   $directory       = '/opt/netbox',
   $manage_database = true,
   String $psql_path = '/usr/bin/psql',
