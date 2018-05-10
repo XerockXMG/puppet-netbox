@@ -15,7 +15,7 @@ class netbox::install {
         pip        => 'present',
         dev        => 'present',
         virtualenv => 'present',
-        gunicorn   => 'present',
+        gunicorn   => 'absent',
       }
 
       if $netbox::install_pip == true {
