@@ -51,7 +51,7 @@ class netbox::install {
     mode   => '0755',
   }
 
-  vcsrepo { "${netbox::directory}/netbox":
+  vcsrepo { "${netbox::directory}":
     ensure   => present,
     provider => git,
     source   => 'https://github.com/digitalocean/netbox.git',
