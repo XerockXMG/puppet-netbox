@@ -4,7 +4,7 @@
       String $db_port = $netbox::db_port ,
       String $db_host = $netbox::db_hostname ,
       String $secret = $netbox::secret_key ,
-      Array $allowed_hosts = $netbox::allowed_hosts | -%>
+      String $allowed_hosts = $netbox::allowed_hosts | -%>
 
 
 
@@ -18,7 +18,7 @@
 # access to the server via any other hostnames. The first FQDN in the list will be treated as the preferred name.
 #
 # Example: ALLOWED_HOSTS = ['netbox.example.com', 'netbox.internal.local']
-ALLOWED_HOSTS = <%= $allowed_hosts -%>
+ALLOWED_HOSTS = ['<%= $allowed_hosts -%>']
 
 # PostgreSQL database configuration.
 DATABASE = {
