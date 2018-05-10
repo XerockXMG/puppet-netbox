@@ -4,12 +4,13 @@ class netbox::install {
 
   if $netbox::manage_python == true {
 
-    $version = lookup("netbox::python.${netbox::python_version}")
-    package { ['$version']  :
+    $packages = lookup("netbox::python.${netbox::python_version}.packages")
+    $pip = lookup("netbox::python.${netbox::python_version}.pip")
+    package { ["$version"]  :
       ensure => 'installed',
     }
 
-    package { "${version}-pip":
+    package { "${pip}":
       ensure => 'installed',
     }
 
