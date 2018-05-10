@@ -1,6 +1,6 @@
 ---
 netbox::python:
-  '27': ['python2', 'python-devel', 'python-setuptools']
-  '3': ['python3', 'python3-devel', 'python3-setuptools']
-  '34': ['python34', 'python34-devel', 'python34-setuptools']
+  27: ['python2', 'python-devel', 'python-setuptools']
+  3: ['python3', 'python3-devel', 'python3-setuptools']
+  34: ['python34', 'python34-devel', 'python34-setuptools']
 netbox::packages: ['libxml2-devel', 'libxslt-devel', 'libffi-devel', 'graphviz', 'openssl-devel', 'redhat-rpm-config', 'git']
