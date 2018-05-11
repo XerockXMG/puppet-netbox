@@ -26,6 +26,9 @@ class netbox::install {
       ensure  => present,
       content => epp("${module_name}/installation.sh.epp"),
       path    => "${netbox::directory}/installation.sh",
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
       require => File['netbox dir']
     }
 
@@ -33,6 +36,9 @@ class netbox::install {
       ensure  => present,
       content => epp("${module_name}/expect.sh.epp"),
       path    => "${netbox::directory}/expect.sh",
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0755',
       require => File['netbox dir']
     }
 
