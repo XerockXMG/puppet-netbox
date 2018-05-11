@@ -30,7 +30,7 @@ class netbox::install {
       }
 
     exec { 'installation':
-      command => "/usr/bin/sh ${netbox::directory}/installation.sh",
+      command => "{ echo ${netbox::admin_username} ; echo ${netbox::admin_email} ; echo ${netbox::admin_password} ; echo ${netbox::admin_password} } | /usr/bin/sh ${netbox::directory}/installation.sh",
       require => File['install script']
     }
 
