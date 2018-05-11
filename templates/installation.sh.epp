@@ -2,7 +2,7 @@
       String $python_command = lookup("netbox::python.${netbox::python_version}.python_command"),
       String $pip_version = lookup("netbox::python.${netbox::python_version}.pip_version"),
       String $admin_username = $netbox::admin_username,
-      String $admin_email = $netbox::admin_email,
+      Optional[String] $admin_email = $netbox::admin_email,
       String $admin_password = $netbox::admin_password | -%>
 
 #!/bin/sh
