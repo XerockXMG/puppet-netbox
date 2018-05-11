@@ -5,24 +5,31 @@
 
 #!/usr/bin/epect -f
 
-set timeout -1
+if { ! -f <%= $netbox_directory -%>/expectran.txt } {
+  set timeout -1
 
-spawn <%= $netbox_directory -%>/installation.sh
+  spawn <%= $netbox_directory -%>/installation.sh
 
-expect "Username:"
+  expect "Username:"
 
-send -- "<%= $admin_username -%>\r"
+  send -- "<%= $admin_username -%>\r"
 
-expect "Email address:"
+  expect "Email address:"
 
-send -- "<%= $admin_email -%>\r"
+  send -- "<%= $admin_email -%>\r"
 
-expect "Password:"
+  expect "Password:"
 
-send -- "<%= $admin_password -%>\r"
+  send -- "<%= $admin_password -%>\r"
 
-expect "Password (again):"
+  expect "Password (again):"
 
-send -- "<%= $admin_password -%>\r"
+  send -- "<%= $admin_password -%>\r"
 
-expect eof
+  expect eof
+  
+  touch <%= $netbox_directory -%>/expectran.txt
+
+} else {
+   expect eof
+}
