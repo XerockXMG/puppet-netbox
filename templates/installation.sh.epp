@@ -6,6 +6,7 @@
 
 if [ ! -f <%= $netbox_directory -%>/pip_packages.txt ]; then
   /usr/bin/<%= $pip_version -%> install -U -r <%= $netbox_directory -%>/netbox/requirements.txt && /usr/bin/touch <%= $netbox_directory -%>/pip_packages.txt
+fi
 
 if [ ! -f <%= $netbox_directory -%>/migrated.txt ]; then
   /usr/bin/<%= $python_command -%> <%= $netbox_directory -%>/netbox/manage.py migrate && /usr/bin/touch <%= $netbox_directory -%>/migrated.txt
