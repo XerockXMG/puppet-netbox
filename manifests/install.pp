@@ -5,8 +5,10 @@ class netbox::install {
   if $netbox::manage_python == true {
 
     $python_packages = lookup("netbox::python.${netbox::python_version}.packages")
+    $python_command = lookup("netbox::python.${netbox::python_version}.python_command")
     $pip = lookup("netbox::python.${netbox::python_version}.pip_package")
     $pip_version = lookup("netbox::python.${netbox::python_version}.pip_version")
+
     package { $python_packages:
       ensure => 'installed',
     }
@@ -18,6 +20,18 @@ class netbox::install {
     exec { 'install pip packages':
       command => "/usr/bin/${pip_version} install -U -r ${netbox::directory}/requirements.txt && /usr/bin/touch ${netbox::directory}/requirements_installed.txt",
       unless  => '/usr/bin/ls /opt/netbox/requirements_installed.txt'
+    }
+
+    file { 'install script':
+      ensure  => present,
+      content => epp("${module_name}/installation.sh.epp"),
+      path    => "${netbox::directory}/installation.sh",
+      require => File['netbox dir']
+      }
+
+    exec { 'installation':
+      command => "/usr/bin/sh ${netbox::directory}/installation.sh",
+      require => File['install script']
     }
 
     if $netbox::use_gunicorn == true {

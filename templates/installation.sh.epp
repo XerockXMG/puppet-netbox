@@ -1,0 +1,20 @@
+<%- | String $netbox_directory = $netbox::directory,
+      String $python_command = lookup("netbox::python.${netbox::python_version}.python_command"),
+      String $pip_version = lookup("netbox::python.${netbox::python_version}.pip_version") | -%>
+
+#!/bin/sh
+
+if [ ! -f <%= $netbox_directory -%>/pip_packages.txt ]; then
+  /usr/bin/<%= $pip_version -%> install -U -r <%= $netbox_directory -%>/netbox/requirements.txt && /usr/bin/touch <%= $netbox_directory -%>/pip_packages.txt
+
+if [ ! -f <%= $netbox_directory -%>/migrated.txt ]; then
+  /usr/bin/<%= $python_command -%> <%= $netbox_directory -%>/netbox/manage.py migrate && /usr/bin/touch <%= $netbox_directory -%>/migrated.txt
+fi
+
+if [ ! -f <%= $netbox_directory -%>/static_collected.txt ]; then
+  /usr/bin/<%= $python_command -%> <%= $netbox_directory -%>/netbox/manage.py collectstatic --no-input && /usr/bin/touch <%= $netbox_directory -%>/static_collected.txt
+fi
+
+if [ ! -f <%= $netbox_directory -%>/createsuperuser.txt ]; then
+  /usr/bin/<%= $python_command -%> <%= $netbox_directory -%>/netbox/manage.py createsuperuser && /usr/bin/touch <%= $netbox_directory -%>/createsuperuser.txt
+fi

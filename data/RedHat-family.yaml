@@ -2,14 +2,17 @@
 netbox::python:
   27:
     packages: ['python2', 'python-devel', 'python-setuptools']
+    python_command: 'python'
     pip_package: 'python2-pip'
     pip_version: 'pip'
   3:
     packages: ['python3', 'python3-devel', 'python3-setuptools']
+    python_command: 'python3'
     pip_package: 'python34-pip'
     pip_version: 'pip3'
   34:
     packages: ['python34', 'python34-devel', 'python34-setuptools']
+    python_command: 'python3'
     pip_package: 'python34-pip'
     pip_version: 'pip3'
 
