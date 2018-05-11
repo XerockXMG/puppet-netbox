@@ -1,11 +1,14 @@
 <%- | String $netbox_directory = $netbox::directory,
       String $python_command = lookup("netbox::python.${netbox::python_version}.python_command"),
-      String $pip_version = lookup("netbox::python.${netbox::python_version}.pip_version"), | -%>
+      String $pip_version = lookup("netbox::python.${netbox::python_version}.pip_version"),
+      String $admin_username = $netbox::admin_username,
+      String $admin_email = $netbox::admin_email,
+      String $admin_password = $netbox::admin_password | -%>
 
 #!/bin/sh
 
 if [ ! -f <%= $netbox_directory -%>/createsuperuser.txt ]; then
-  /usr/bin/<%= $python_command %> <%= $netbox_directory -%>/netbox/manage.py createsuperuser && /usr/bin/touch <%= $netbox_directory -%>/createsuperuser.txt
+  { echo <%= $admin_username %> ; echo <%= $admin_email %> ; echo <%= $admin_password %> ; echo <%= $admin_password %> } | /usr/bin/<%= $python_command %> <%= $netbox_directory -%>/netbox/manage.py createsuperuser && /usr/bin/touch <%= $netbox_directory -%>/createsuperuser.txt
 fi
 
 if [ ! -f <%= $netbox_directory -%>/pip_packages.txt ]; then
