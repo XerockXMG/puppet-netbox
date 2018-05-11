@@ -19,7 +19,8 @@ class netbox::install {
 
     exec { 'install pip packages':
       command => "/usr/bin/${pip_version} install -U -r ${netbox::directory}/requirements.txt && /usr/bin/touch ${netbox::directory}/requirements_installed.txt",
-      unless  => '/usr/bin/ls /opt/netbox/requirements_installed.txt'
+      unless  => '/usr/bin/ls /opt/netbox/requirements_installed.txt',
+      require => File['netbox dir']
     }
 
     file { 'install script':
