@@ -5,7 +5,7 @@
 #!/bin/sh
 
 if [ ! -f <%= $netbox_directory -%>/pip_packages.txt ]; then
-  /usr/bin/<%= $pip_version %> install -U -r <%= $netbox_directory -%>/netbox/requirements.txt && /usr/bin/touch <%= $netbox_directory -%>/pip_packages.txt
+  /usr/bin/<%= $pip_version %> install -U -r <%= $netbox_directory -%>/requirements.txt && /usr/bin/touch <%= $netbox_directory -%>/pip_packages.txt
 fi
 
 if [ ! -f <%= $netbox_directory -%>/migrated.txt ]; then
