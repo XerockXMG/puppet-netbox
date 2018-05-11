@@ -1,0 +1,28 @@
+<%- | String $netbox_directory = $netbox::directory,
+      String $admin_username = $netbox::admin_username,
+      String $admin_password = $netbox::admin_password,
+      Optional[String] $admin_email = $netbox::admin_email, | -%>
+
+#!/usr/bin/epect -f
+
+set timeout -1
+
+spawn <%= $netbox_directory -%>/installation.sh
+
+expect "Username:"
+
+send -- "<%= $admin_username -%>\r"
+
+expect "Email address:"
+
+send -- "<%= $admin_email -%>\r"
+
+expect "Password:"
+
+send -- "<%= $admin_password -%>\r"
+
+expect "Password (again):"
+
+send -- "<%= $admin_password -%>\r"
+
+expect eof

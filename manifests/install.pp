@@ -27,11 +27,18 @@ class netbox::install {
       content => epp("${module_name}/installation.sh.epp"),
       path    => "${netbox::directory}/installation.sh",
       require => File['netbox dir']
-      }
+    }
+
+    file { 'expect script':
+      ensure  => present,
+      content => epp("${module_name}/expect.sh.epp"),
+      path    => "${netbox::directory}/expect.sh",
+      require => File['netbox dir']
+    }
 
     exec { 'installation':
-      command => "/usr/bin/sh ${netbox::directory}/installation.sh",
-      require => File['install script']
+      command => "/usr/bin/sh ${netbox::directory}/expect.sh",
+      require => [ File['install script'], File['expect script'] ]
     }
 
     if $netbox::use_gunicorn == true {

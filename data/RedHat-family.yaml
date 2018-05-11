@@ -16,4 +16,4 @@ netbox::python:
     pip_package: 'python34-pip'
     pip_version: 'pip3'
 
-netbox::packages: ['libxml2-devel', 'libxslt-devel', 'libffi-devel', 'graphviz', 'openssl-devel', 'redhat-rpm-config', 'git']
+netbox::packages: ['libxml2-devel', 'libxslt-devel', 'libffi-devel', 'graphviz', 'openssl-devel', 'redhat-rpm-config', 'git', 'expect']
