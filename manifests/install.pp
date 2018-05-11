@@ -16,7 +16,8 @@ class netbox::install {
     }
 
     exec { 'install pip packages':
-      command => "/usr/bin/${pip_version} install -U -r ${netbox::directory}/requirements.txt"
+      command => "/usr/bin/${pip_version} install -U -r ${netbox::directory}/requirements.txt && /usr/bin/touch ${netbox::directory}/requirements_installed.txt",
+      unless  => 'ls /opt/netbox/requirements_installed.txt'
     }
 
     if $netbox::use_gunicorn == true {
