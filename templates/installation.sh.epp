@@ -1,6 +1,6 @@
 <%- | String $netbox_directory = $netbox::directory,
       String $python_command = lookup("netbox::python.${netbox::python_version}.python_command"),
-      String $pip_version = lookup("netbox::python.${netbox::python_version}.pip_version") | -%>
+      String $pip_version = lookup("netbox::python.${netbox::python_version}.pip_version"), | -%>
 
 #!/bin/sh
 
