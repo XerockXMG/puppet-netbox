@@ -43,7 +43,7 @@ class netbox::install {
     }
 
     exec { 'installation':
-      command => "/usr/bin/sh ${netbox::directory}/expect.sh",
+      command => "/usr/bin/expect ${netbox::directory}/expect.sh",
       require => [ File['install script'], File['expect script'] ]
     }
 
