@@ -20,7 +20,7 @@ class netbox::install {
     exec { 'install pip packages':
       command => "/usr/bin/${pip_version} install -U -r ${netbox::directory}/requirements.txt && /usr/bin/touch ${netbox::directory}/requirements_installed.txt",
       unless  => '/usr/bin/ls /opt/netbox/requirements_installed.txt',
-      require => Vcsrepo["${netbox::directory}/netbox"]
+      require => Vcsrepo["${netbox::directory}"]
     }
 
     file { 'install script':
@@ -30,7 +30,7 @@ class netbox::install {
       owner   => 'root',
       group   => 'root',
       mode    => '0755',
-      require => Vcsrepo["${netbox::directory}/netbox"]
+      require => Vcsrepo["${netbox::directory}"]
     }
 
     file { 'expect script':
@@ -40,7 +40,7 @@ class netbox::install {
       owner   => 'root',
       group   => 'root',
       mode    => '0755',
-      require => File['netbox dir']
+      require => Vcsrepo["${netbox::directory}"]
     }
 
     exec { 'installation':
@@ -73,19 +73,10 @@ class netbox::install {
     ensure => 'installed',
   }
 
-  file { 'netbox dir':
-    ensure => 'directory',
-    path   => $netbox::directory,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
-  }
-
-  vcsrepo { "${netbox::directory}/netbox":
+  vcsrepo { "${netbox::directory}":
     ensure   => present,
     provider => git,
     source   => 'https://github.com/digitalocean/netbox.git',
     revision => $netbox::version,
-    require  => File['netbox dir'],
   }
 }
