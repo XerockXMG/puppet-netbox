@@ -16,7 +16,6 @@ class netbox::install {
     }
 
     exec { 'install pip packages':
-      ensure  => 'installed',
       command => "/usr/bin/${pip_version} install -U -r ${netbox::directory}/requirements.txt"
     }
 
