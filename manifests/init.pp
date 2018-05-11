@@ -9,7 +9,7 @@ class netbox (
   String $admin_username,
   String $admin_password,
   Optional[String] $admin_email = undef,
-  Optional[String] $webserver_name = "${facts}['networking']['ip']",
+  Optional[String] $webserver_name = $::facts['networking']['ip'],
   Boolean $manage_python = true,
   Boolean $use_gunicorn = true,
   String $pip_version = '3',
