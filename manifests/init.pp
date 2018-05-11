@@ -12,7 +12,6 @@ class netbox (
   Optional[String] $webserver_name = $::facts['networking']['ip'],
   Boolean $manage_python = true,
   Boolean $use_gunicorn = true,
-  String $pip_version = '3',
   $directory       = '/opt/netbox',
   $manage_database = true,
   String $psql_path = '/usr/bin/psql',
