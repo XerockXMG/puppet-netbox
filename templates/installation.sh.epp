@@ -11,10 +11,6 @@ if [ ! -f <%= $netbox_directory -%>/createsuperuser.txt ]; then
   /usr/bin/<%= $python_command %> <%= $netbox_directory -%>/netbox/manage.py createsuperuser && /usr/bin/touch <%= $netbox_directory -%>/createsuperuser.txt
 fi
 
-if [ ! -f <%= $netbox_directory -%>/pip_packages.txt ]; then
-  /usr/bin/<%= $pip_version %> install -U -r <%= $netbox_directory -%>/requirements.txt && /usr/bin/touch <%= $netbox_directory -%>/pip_packages.txt
-fi
-
 if [ ! -f <%= $netbox_directory -%>/migrated.txt ]; then
   /usr/bin/<%= $python_command %> <%= $netbox_directory -%>/netbox/manage.py migrate && /usr/bin/touch <%= $netbox_directory -%>/migrated.txt
 fi
