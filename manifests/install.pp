@@ -8,12 +8,17 @@ class netbox::install {
     $python_command = lookup("netbox::python.${netbox::python_version}.python_command")
     $pip = lookup("netbox::python.${netbox::python_version}.pip_package")
     $pip_version = lookup("netbox::python.${netbox::python_version}.pip_version")
+    $pip27 = lookup('netbox::python.27.pip_package')
 
     package { $python_packages:
       ensure => 'installed',
     }
 
     package { "${pip}":
+      ensure => 'installed',
+    }
+
+    package { "${pip27}":
       ensure => 'installed',
     }
 
