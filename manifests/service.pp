@@ -35,7 +35,7 @@ class netbox::service {
   nginx::resource::location { 'netbox static':
     ensure   => present,
     server   => "$netbox::webserver_name",
-    alias    => '/opt/netbox/netbox/static/',
+    www_root => '/opt/netbox/netbox/',
     location => '/static/'
   }
 
