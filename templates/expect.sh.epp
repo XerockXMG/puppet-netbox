@@ -10,7 +10,7 @@ set timeout -1
 spawn <%= $netbox_directory -%>/installation.sh
 
 expect {
-  "Username:" { send -- "<%= $admin_username -%>\r" }
+  "Username" { send -- "<%= $admin_username -%>\r" }
   eof { exit }
 }
 
