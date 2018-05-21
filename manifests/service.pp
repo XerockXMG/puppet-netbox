@@ -29,7 +29,7 @@ class netbox::service {
 
   nginx::resource::server { "$netbox::webserver_name":
     listen_port => 80,
-    proxy       => 'http://localhost:8000',
+    proxy       => "http://localhost:${netbox::port}",
   }
 
   nginx::resource::location { 'netbox static':

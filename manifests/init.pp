@@ -8,6 +8,7 @@ class netbox (
   Pattern[/9\.\d|10/] $postgresql_version,
   String $admin_username,
   String $admin_password,
+  String $port,
   Optional[String] $admin_email = undef,
   Optional[String] $webserver_name = $::facts['networking']['ip'],
   Boolean $manage_python = true,
